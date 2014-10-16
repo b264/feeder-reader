@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  link: MyString
+  description: MyString
+  language: MyString
+  copyright: MyString
+  managingEditor: MyString
+  webMaster: MyString
+  pubDate: 2014-10-16
+  lastBuildDate: 2014-10-16
+  category_id: 1
+  generator: MyString
+  docs: MyString
+  cloud_id: 1
+  ttl: 1
+  image_id: 1
+  textInput: MyString
+  skipHours_id: 1
+  skipDays_id: 1
+
+two:
+  title: MyString
+  link: MyString
+  description: MyString
+  language: MyString
+  copyright: MyString
+  managingEditor: MyString
+  webMaster: MyString
+  pubDate: 2014-10-16
+  lastBuildDate: 2014-10-16
+  category_id: 1
+  generator: MyString
+  docs: MyString
+  cloud_id: 1
+  ttl: 1
+  image_id: 1
+  textInput: MyString
+  skipHours_id: 1
+  skipDays_id: 1

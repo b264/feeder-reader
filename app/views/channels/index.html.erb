@@ -1,0 +1,57 @@
+<h1>Listing channels</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Link</th>
+    <th>Description</th>
+    <th>Language</th>
+    <th>Copyright</th>
+    <th>Managingeditor</th>
+    <th>Webmaster</th>
+    <th>Pubdate</th>
+    <th>Lastbuilddate</th>
+    <th>Category</th>
+    <th>Generator</th>
+    <th>Docs</th>
+    <th>Cloud</th>
+    <th>Ttl</th>
+    <th>Image</th>
+    <th>Textinput</th>
+    <th>Skiphours</th>
+    <th>Skipdays</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @channels.each do |channel| %>
+  <tr>
+    <td><%= channel.title %></td>
+    <td><%= channel.link %></td>
+    <td><%= channel.description %></td>
+    <td><%= channel.language %></td>
+    <td><%= channel.copyright %></td>
+    <td><%= channel.managingEditor %></td>
+    <td><%= channel.webMaster %></td>
+    <td><%= channel.pubDate %></td>
+    <td><%= channel.lastBuildDate %></td>
+    <td><%= channel.category_id %></td>
+    <td><%= channel.generator %></td>
+    <td><%= channel.docs %></td>
+    <td><%= channel.cloud_id %></td>
+    <td><%= channel.ttl %></td>
+    <td><%= channel.image_id %></td>
+    <td><%= channel.textInput %></td>
+    <td><%= channel.skipHours_id %></td>
+    <td><%= channel.skipDays_id %></td>
+    <td><%= link_to 'Show', channel %></td>
+    <td><%= link_to 'Edit', edit_channel_path(channel) %></td>
+    <td><%= link_to 'Destroy', channel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Channel', new_channel_path %>

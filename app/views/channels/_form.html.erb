@@ -1,0 +1,89 @@
+<%= form_for(@channel) do |f| %>
+  <% if @channel.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@channel.errors.count, "error") %> prohibited this channel from being saved:</h2>
+
+      <ul>
+      <% @channel.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :link %><br />
+    <%= f.text_field :link %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :language %><br />
+    <%= f.text_field :language %>
+  </div>
+  <div class="field">
+    <%= f.label :copyright %><br />
+    <%= f.text_field :copyright %>
+  </div>
+  <div class="field">
+    <%= f.label :managingEditor %><br />
+    <%= f.text_field :managingEditor %>
+  </div>
+  <div class="field">
+    <%= f.label :webMaster %><br />
+    <%= f.text_field :webMaster %>
+  </div>
+  <div class="field">
+    <%= f.label :pubDate %><br />
+    <%= f.date_select :pubDate %>
+  </div>
+  <div class="field">
+    <%= f.label :lastBuildDate %><br />
+    <%= f.date_select :lastBuildDate %>
+  </div>
+  <div class="field">
+    <%= f.label :category_id %><br />
+    <%= f.number_field :category_id %>
+  </div>
+  <div class="field">
+    <%= f.label :generator %><br />
+    <%= f.text_field :generator %>
+  </div>
+  <div class="field">
+    <%= f.label :docs %><br />
+    <%= f.text_field :docs %>
+  </div>
+  <div class="field">
+    <%= f.label :cloud_id %><br />
+    <%= f.number_field :cloud_id %>
+  </div>
+  <div class="field">
+    <%= f.label :ttl %><br />
+    <%= f.number_field :ttl %>
+  </div>
+  <div class="field">
+    <%= f.label :image_id %><br />
+    <%= f.number_field :image_id %>
+  </div>
+  <div class="field">
+    <%= f.label :textInput %><br />
+    <%= f.text_field :textInput %>
+  </div>
+  <div class="field">
+    <%= f.label :skipHours_id %><br />
+    <%= f.number_field :skipHours_id %>
+  </div>
+  <div class="field">
+    <%= f.label :skipDays_id %><br />
+    <%= f.number_field :skipDays_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,95 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @channel.title %>
+</p>
+
+<p>
+  <b>Link:</b>
+  <%= @channel.link %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @channel.description %>
+</p>
+
+<p>
+  <b>Language:</b>
+  <%= @channel.language %>
+</p>
+
+<p>
+  <b>Copyright:</b>
+  <%= @channel.copyright %>
+</p>
+
+<p>
+  <b>Managingeditor:</b>
+  <%= @channel.managingEditor %>
+</p>
+
+<p>
+  <b>Webmaster:</b>
+  <%= @channel.webMaster %>
+</p>
+
+<p>
+  <b>Pubdate:</b>
+  <%= @channel.pubDate %>
+</p>
+
+<p>
+  <b>Lastbuilddate:</b>
+  <%= @channel.lastBuildDate %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @channel.category_id %>
+</p>
+
+<p>
+  <b>Generator:</b>
+  <%= @channel.generator %>
+</p>
+
+<p>
+  <b>Docs:</b>
+  <%= @channel.docs %>
+</p>
+
+<p>
+  <b>Cloud:</b>
+  <%= @channel.cloud_id %>
+</p>
+
+<p>
+  <b>Ttl:</b>
+  <%= @channel.ttl %>
+</p>
+
+<p>
+  <b>Image:</b>
+  <%= @channel.image_id %>
+</p>
+
+<p>
+  <b>Textinput:</b>
+  <%= @channel.textInput %>
+</p>
+
+<p>
+  <b>Skiphours:</b>
+  <%= @channel.skipHours_id %>
+</p>
+
+<p>
+  <b>Skipdays:</b>
+  <%= @channel.skipDays_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_channel_path(@channel) %> |
+<%= link_to 'Back', channels_path %>
