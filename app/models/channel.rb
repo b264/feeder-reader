@@ -1,8 +1,11 @@
 class Channel < ActiveRecord::Base
   attr_accessible :category_id, :cloud_id, :copyright, :description, :docs, :generator,
-                  :image_id, :language, :lastBuildDate, :link, :managingEditor, :pubDate,
-                  :skipDays_id, :skipHours_id, :textInput, :title, :ttl, :URL, :webMaster
+                  :image_id, :language, :lastBuildDate, :link, :managingEditor,
+                  :pubDate, :skipDays_id, :skipHours_id, :textInput, :title, :ttl, :URL,
+                  :webMaster
   validate :validate_save
+  
+  has_many :items
   
   def validate_url url
     url && connect_to(url)
@@ -25,6 +28,7 @@ class Channel < ActiveRecord::Base
   def update_channel
     #begin
       xml= open(self.URL).read
+      puts xml #TODO: remove this
       doc= Nokogiri::XML(xml) {|config| config.strict.nonet}
       parse doc, Channel.accessible_attributes
     #rescue #Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError => er
@@ -32,17 +36,21 @@ class Channel < ActiveRecord::Base
     #end
   end
   def parse doc, fields
-    #TODO
-    #true
     fields.each do |attr|
       unless ['URL', ''].include? attr.to_s
         if self.methods.include? attr.to_sym
           unless doc.xpath("//#{attr.to_s}").empty?
-            eval "self.#{attr.to_s}= doc.xpath('//#{attr.to_s}').first.content"
+            case attr.to_s
+              when 'item'
+                
+              else
+                #TODO: security hole, code execution
+                eval "self.#{attr.to_s}= doc.xpath('//#{attr.to_s}').first.content"
+            end
           end
         end
       end
     end
-    true
+    true #
   end
 end
