@@ -1,6 +1,6 @@
 FeederReader::Application.routes.draw do
 
-  root :to => 'channels#index', :method => :get, :refresh => :true
+  root :to => 'channels#index', :method => :get, :refresh => :now
   match '/refresh' => 'channels#index', :method => :get, :refresh => :now
   resources :channels
 
