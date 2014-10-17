@@ -3,10 +3,15 @@ class ChannelsController < ApplicationController
   # GET /
   # GET /refresh
   def index
-    @channels = Channel.all
     if params[:refresh].to_s== 'now'
       params.delete :refresh
       Channel.refresh
+    end
+    @channels= Channel.all
+    @count= Channel.all.count.to_i
+    @feed= 'feeds'
+    if @count== 1
+      @feed= 'feed'
     end
   end
   # GET /channels/1

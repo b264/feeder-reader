@@ -1,4 +1,4 @@
-<h2>Channels <%= link_to '(refresh content)', channels_path(:refresh => :now), :method => :get %></h2>
+<h2>Channels <%= link_to "(reload #{@count} #{@feed} now)", channels_path(:refresh => :now), :method => :get %></h2>
 
 <table>
   <tr>

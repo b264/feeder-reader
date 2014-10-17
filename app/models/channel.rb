@@ -14,15 +14,24 @@ class Channel < ActiveRecord::Base
     Channel.accessible_attributes.reject {|x| x.to_s.empty?}
   end
   def self.refresh
-  
+    Channel.all.each do |chan|
+      chan.refresh_content
+    end
+  end
+  def updatable_attrs
+    attrs.reject {|x| x.to_s== 'URL'}
+  end
+  def refresh_content
+    unless validate_url(self.URL) && update_channel
+      self.errors.add :base, 'Unable to connect to feed.'
+    end
   end
   
   private
   
+
   def validate_save
-    unless validate_url(self.URL) && update_channel
-      self.errors.add :base, 'Unable to connect to feed.'
-    end
+    refresh_content
   end
   def connect_to url
     begin
@@ -31,7 +40,16 @@ class Channel < ActiveRecord::Base
       false
     end
   end
+  def clear_content
+    self.items.all.each do |item|
+      item.destroy
+    end
+    self.updatable_attrs.each do |attr|
+      eval "self.#{attr.to_s}= nil"
+    end
+  end
   def update_channel
+    clear_content
     begin
       xml= open(self.URL).read
       doc= Nokogiri::XML(xml) {|config| config.strict.nonet}
