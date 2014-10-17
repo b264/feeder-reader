@@ -13,6 +13,9 @@ class Channel < ActiveRecord::Base
   def attrs
     Channel.accessible_attributes.reject {|x| x.to_s.empty?}
   end
+  def self.refresh
+  
+  end
   
   private
   

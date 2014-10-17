@@ -1,7 +1,7 @@
 FeederReader::Application.routes.draw do
 
-  root :to => 'channels#index', :method => :get
-  
+  root :to => 'channels#index', :method => :get, :refresh => :true
+  match '/refresh' => 'channels#index', :method => :get, :refresh => :now
   resources :channels
 
   # The priority is based upon order of creation:

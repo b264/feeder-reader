@@ -9,6 +9,12 @@
 <body>
 <%= link_to application_name + ' Home', channels_path %>
 <br />
+<% if flash[:notice] %>
+  <h1><%= flash[:notice] %></h1><br /><br /><br />
+<% end %>
+<% if flash[:warning] %>
+  <h1>Warning: <%= flash[:warning] %></h1><br /><br /><br />
+<% end %>
 <%= yield %>
 </body>
 </html>

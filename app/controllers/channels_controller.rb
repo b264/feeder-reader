@@ -1,21 +1,17 @@
 class ChannelsController < ApplicationController
   # GET /channels
-  # GET /channels.json
+  # GET /
+  # GET /refresh
   def index
     @channels = Channel.all
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @channels }
+    if params[:refresh].to_s== 'now'
+      params.delete :refresh
+      Channel.refresh
     end
   end
   # GET /channels/1
-  # GET /channels/1.json
   def show
     @channel = Channel.find(params[:id])
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @channel }
-    end
   end
   # GET /channels/new
   def new
