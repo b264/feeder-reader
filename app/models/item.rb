@@ -5,9 +5,7 @@ class Item < ActiveRecord::Base
   belongs_to :channel, :inverse_of => :item
   
   def attrs
-    list= Item.accessible_attributes
-    list.delete ''
-    list
+    Item.accessible_attributes.reject {|x| x.to_s.empty?}
   end
   
 end

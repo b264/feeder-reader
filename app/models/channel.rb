@@ -11,9 +11,7 @@ class Channel < ActiveRecord::Base
     url && connect_to(url)
   end
   def attrs
-    list= Channel.accessible_attributes
-    list.delete ''
-    list
+    Channel.accessible_attributes.reject {|x| x.to_s.empty?}
   end
   
   private
@@ -33,10 +31,9 @@ class Channel < ActiveRecord::Base
   def update_channel
     begin
       xml= open(self.URL).read
-      puts xml #TODO: remove this
       doc= Nokogiri::XML(xml) {|config| config.strict.nonet}
       parse doc, attrs << 'item'
-    rescue #Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError => er
+    rescue
       false
     end
   end
