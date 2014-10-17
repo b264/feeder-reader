@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141016205310) do
+ActiveRecord::Schema.define(:version => 20141017094316) do
 
   create_table "channels", :force => true do |t|
     t.string   "title"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20141016205310) do
     t.integer  "skipDays_id"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.string   "URL"
   end
 
 end
