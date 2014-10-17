@@ -18,18 +18,8 @@ class ChannelsController < ApplicationController
     end
   end
   # GET /channels/new
-  # GET /channels/new.json
   def new
-    unless valid_url?
-      get_url
-    end
-    if valid_url?
-      fetch_new_channel
-      clear_url
-    else
-      #TODO flash message about bad link
-      index
-    end
+    @channel= Channel.new
   end
   # GET /channels/1/edit
   def edit
@@ -74,23 +64,5 @@ class ChannelsController < ApplicationController
     end
   end
   private
-  def valid_url?
-    @link
-  end
-  def clear_url
-    @link= false
-  end
-  def get_url
-    #TODO
-    @link= 'http://feeds.bbci.co.uk/news/rss.xml'
-  end
-  def fetch_new_channel
-      @channel = Channel.new
-      #TODO
-      respond_to do |format|
-        format.html # new.html.erb
-        format.json { render json: @channel }
-      end
-  end
   
 end

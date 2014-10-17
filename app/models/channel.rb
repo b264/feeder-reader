@@ -1,31 +1,48 @@
 class Channel < ActiveRecord::Base
-  attr_accessible :category_id, :URL, :cloud_id, :copyright, :description, :docs, :generator, :image_id, :language, :lastBuildDate, :link, :managingEditor, :pubDate, :skipDays_id, :skipHours_id, :textInput, :title, :ttl, :webMaster
+  attr_accessible :category_id, :cloud_id, :copyright, :description, :docs, :generator,
+                  :image_id, :language, :lastBuildDate, :link, :managingEditor, :pubDate,
+                  :skipDays_id, :skipHours_id, :textInput, :title, :ttl, :URL, :webMaster
   validate :validate_save
+  
+  def validate_url url
+    url && connect_to(url)
+  end
   
   private
   
   def validate_save
-    unless validate_url(self.link) && update_channel
+    unless validate_url(self.URL) && update_channel
       self.errors.add :base, 'Unable to connect to feed.'
     end
   end
-  def validate_url link
-    link && connect_to(link)
-  end
-  def connect_to link
+  def connect_to url
     begin
-      open(link)
+      open(url)
     rescue
       false
     end
   end
   def update_channel
-    begin
-      xml = open(self.link).read
-      doc = Nokogiri::XML(xml)
-      
-    rescue
-      xml= false
+    #begin
+      xml= open(self.URL).read
+      doc= Nokogiri::XML(xml) {|config| config.strict.nonet}
+      parse doc, Channel.accessible_attributes
+    #rescue #Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError => er
+      #false
+    #end
+  end
+  def parse doc, fields
+    #TODO
+    #true
+    fields.each do |attr|
+      unless ['URL', ''].include? attr.to_s
+        if self.methods.include? attr.to_sym
+          unless doc.xpath("//#{attr.to_s}").empty?
+            eval "self.#{attr.to_s}= doc.xpath('//#{attr.to_s}').first.content"
+          end
+        end
+      end
     end
+    true
   end
 end
