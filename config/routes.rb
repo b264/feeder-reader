@@ -1,6 +1,8 @@
 FeederReader::Application.routes.draw do
-  resources :channels
 
+  root :to => 'channels#index', :method => :get
+  
+  resources :channels
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
